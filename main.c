@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    if(want.format != have.format || want.channels != want.channels) {
+    if(want.format != have.format || want.channels != have.channels) {
         SDL_CloseAudioDevice(dev);
         SDL_DestroyRenderer(pRenderer);
         SDL_DestroyWindow(pWindow);
