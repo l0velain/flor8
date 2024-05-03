@@ -4,14 +4,6 @@
 
 #include "cpu.h"
 
-// Video
-SDL_Window *pWindow;
-SDL_Renderer *pRenderer;
-
-// Audio
-SDL_AudioSpec want, have;
-SDL_AudioDeviceID dev;
-
 int main(int argc, char **argv) {
     if(argc != 2) {
         printf("Usage: %s [ROM]\n", argv[0]);
@@ -30,14 +22,15 @@ int main(int argc, char **argv) {
     SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
     #endif
 
-    pWindow = SDL_CreateWindow("flor8 <3", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, GFX_L * 8, GFX_H * 8, SDL_WINDOW_SHOWN);
+    // Initializing video...
+    SDL_Window *pWindow = SDL_CreateWindow("flor8 <3", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, GFX_L * 8, GFX_H * 8, SDL_WINDOW_SHOWN);
     if(pWindow == NULL) {
         SDL_Quit();
         fprintf(stderr, "SDL window creation error: %s\n", SDL_GetError());
         return -1;
     }
 
-    pRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Renderer *pRenderer = SDL_CreateRenderer(pWindow, -1, SDL_RENDERER_ACCELERATED);
     if(pRenderer == NULL) {
         SDL_DestroyWindow(pWindow);
         SDL_Quit();
@@ -46,7 +39,8 @@ int main(int argc, char **argv) {
     }
 
     // Initializing audio...
-    
+    SDL_AudioSpec want, have;
+    SDL_AudioDeviceID dev;
     want.freq = SAMPLE_RATE;
     want.format = AUDIO_S16LSB; // Signed 16 bit little endian
     want.channels = 1; // 1 = mono, 2 = stereo
@@ -111,7 +105,7 @@ int main(int argc, char **argv) {
             }
         }
 
-        updateTimers();
+        updateTimers(&dev);
         nanosleep(&t, &t);
 
     }
