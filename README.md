@@ -1,4 +1,4 @@
-# flor8
+# flor8 💕
 A Chip8 emulator written in C!
 
 You can customize audio related things and the number of instruction cycles ran per second by editing config.h. <br/>
