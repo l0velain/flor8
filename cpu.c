@@ -222,7 +222,7 @@ void cpuCycle() {
                     break;
                 default:
                     fprintf(stderr, "UNSUPPORTED OPCODE 0xE000: %04X\n", cpu.opcode);
-                    exit(3);
+                    exit(2);
             }
             break;
         case 0xF000:
