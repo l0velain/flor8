@@ -282,12 +282,12 @@ void cpuCycle() {
     return;
 }
 
-void updateTimers() {
+void updateTimers(SDL_AudioDeviceID *device) {
     if(cpu.delayTimer > 0)
         cpu.delayTimer--;
     if(cpu.soundTimer > 0) {
-        SDL_PauseAudioDevice(dev, 0);
+        SDL_PauseAudioDevice(*device, 0);
         cpu.soundTimer--;
     } else
-        SDL_PauseAudioDevice(dev, 1);
+        SDL_PauseAudioDevice(*device, 1);
 }
