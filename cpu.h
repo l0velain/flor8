@@ -28,14 +28,10 @@ extern Chip8 cpu;
 
 void cpuInitialization(char *fileName);
 void cpuCycle();
-void updateTimers();
+void updateTimers(SDL_AudioDeviceID *device);
 
 // SDL input handling and audio
 void handleInput(SDL_Event ev, char *arg, uint8_t *f);
-
-extern SDL_AudioSpec want;
-extern SDL_AudioSpec have;
-extern SDL_AudioDeviceID dev;
 void audioCallback(void* udata, uint8_t *stream, int lens);
 
 #endif
