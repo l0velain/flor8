@@ -21,7 +21,7 @@ const uint8_t keymap[16] = {
         SDL_SCANCODE_V  // F
     };
 
-void handleInput(SDL_Event ev, char *arg, uint8_t *f) {
+void handleInput(SDL_Event ev, char *arg, uint8_t *f, uint8_t *pause) {
     if(ev.type == SDL_KEYDOWN) {
         switch(ev.key.keysym.scancode) {
             case SDL_SCANCODE_ESCAPE:
@@ -31,10 +31,10 @@ void handleInput(SDL_Event ev, char *arg, uint8_t *f) {
                 cpuInitialization(arg); 
                 break;
             case SDL_SCANCODE_P: // Pause
-                if(cpu.pauseFlag == 0)
-                    cpu.pauseFlag = 1;
+                if(*pause == 0)
+                    *pause = 1;
                 else
-                    cpu.pauseFlag = 0;
+                    *pause = 0;
                 break;
             default:
                 for(int i = 0; i < 16; i++) {
