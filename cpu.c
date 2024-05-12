@@ -38,7 +38,7 @@ void cpuInitialization(char *fileName) {
     cpu.delayTimer = 0;
     cpu.I = 0;
     cpu.sp = 0;
-//  cpu.pauseFlag = 0;
+    cpu.pauseFlag = 0;
     cpu.drawFlag = 0;
 
     // Randomness!
