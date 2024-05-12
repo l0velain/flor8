@@ -72,15 +72,16 @@ int main(int argc, char **argv) {
     t.tv_nsec = 16666667; // 60Hz framerate
 
     uint8_t finish = 0;
+    uint8_t pauseFlag = 0;
 
     // Main loop
     while(finish == 0) {
         SDL_Event event;
         while(SDL_PollEvent(&event))
-            handleInput(event, argv[1], &finish);
+            handleInput(event, argv[1], &finish, &pauseFlag);
 
     // Call nanosleep() to avoid 100% CPU usage
-        if(cpu.pauseFlag == 1) {
+        if(pauseFlag == 1) {
             nanosleep(&t, &t);
             continue;
         }
