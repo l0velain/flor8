@@ -30,7 +30,7 @@ void cpuCycle();
 void updateTimers(SDL_AudioDeviceID *device);
 
 // SDL input handling and audio
-void handleInput(SDL_Event ev, char *arg, uint8_t *f);
+void handleInput(SDL_Event ev, char *arg, uint8_t *f, uint8_t *pause);
 void audioCallback(void* udata, uint8_t *stream, int lens);
 
 #endif
