@@ -79,9 +79,11 @@ int main(int argc, char **argv) {
         while(SDL_PollEvent(&event))
             handleInput(event, argv[1], &finish);
 
-    // Infinite loop = 100% CPU usage. I want to find a better way to pause the emulator
-    //  if(cpu.pauseFlag == 1) {
-    //      continue;
+    // Call nanosleep() to avoid 100% CPU usage
+        if(cpu.pauseFlag == 1) {
+            nanosleep(&t, &t);
+            continue;
+        }
         
         for(int i = 0; i < INSTRUCTIONS_PER_SECOND / 60; i++) {
             cpuCycle();
