@@ -8,7 +8,7 @@
 
 Chip8 cpu;
 
-void cpuInitialization(char *fileName) {    
+void cpuInitialization(char *fileName) {  
     memset(cpu.memory, 0, sizeof(cpu.memory));
     
     // Load ROM
@@ -38,7 +38,6 @@ void cpuInitialization(char *fileName) {
     cpu.delayTimer = 0;
     cpu.I = 0;
     cpu.sp = 0;
-    cpu.pauseFlag = 0;
     cpu.drawFlag = 0;
 
     // Randomness!
@@ -147,7 +146,7 @@ void cpuCycle() {
                     cpu.pc += 2;
                     break;
                 case 0x4:
-                    uint8_t temp = cpu.V[x] + cpu.V[y];
+                    uint16_t temp = cpu.V[x] + cpu.V[y];
                     cpu.V[0xF] = temp > 255 ? 1 : 0;
                     cpu.V[x] = temp & 0x00FF;
                     cpu.pc += 2;
