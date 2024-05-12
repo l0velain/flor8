@@ -19,7 +19,6 @@ typedef struct Chip8 {
 	uint8_t soundTimer;
 	uint8_t delayTimer;
 	uint8_t screen[GFX_L * GFX_H];
-        uint16_t pauseFlag;
 	uint8_t drawFlag;
 	uint8_t keypad[16];
 } Chip8;
