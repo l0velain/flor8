@@ -30,12 +30,12 @@ void handleInput(SDL_Event ev, char *arg, uint8_t *f) {
             case SDL_SCANCODE_L: // Reset
                 cpuInitialization(arg); 
                 break;
-        //  case SDL_SCANCODE_P: // Pause
-        //      if(cpu.pauseFlag == 0)
-        //          cpu.pauseFlag = 1;
-        //      else
-        //          cpu.pauseFlag = 0;
-        //      break;
+            case SDL_SCANCODE_P: // Pause
+                if(cpu.pauseFlag == 0)
+                    cpu.pauseFlag = 1;
+                else
+                    cpu.pauseFlag = 0;
+                break;
             default:
                 for(int i = 0; i < 16; i++) {
                     if(ev.key.keysym.scancode == keymap[i])
